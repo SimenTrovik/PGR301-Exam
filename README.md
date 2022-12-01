@@ -14,3 +14,7 @@ on:
 ```
 
 ### Oppgave 2
+Her var feilen at kommandoen ```mvn compile``` ble brukt. Compile tar kun og kompilerer koden, og kjører ikke tester
+Etter å ha byttet til ```mvn test``` fungerer det som det skal, og workflowen feiler fordi tester ikke er riktig. Etter å ha endret testen til å anta at antallet carts er 0 etter checkout, passerer testen
+
+### Oppgave 3
