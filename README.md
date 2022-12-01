@@ -24,4 +24,13 @@ on:
       - '**'
 ```
 ### Oppgave 3
+For å konfigurere branch protection går man til
+- Settings
+- Branches
+- Add branch protection rule
+
+I feltet som heter Branch name pattern må man definere hvilke branches disse reglene gjelder for. Det defineres med fnmatch syntax
+I dette tilfelle holder det å bruke ```main```
+For at man ikke skal kunne pushe kode direkete til main, kan man huke av valget som heter ```Require pull request reviews before merging```. Rett under dette valget kan man også bestemme hvor mange godkjenninger man trenger før pull requesten kan merges.
+For at kode kun skal kunne merges når Github actions har blitt kjørt, kan man huke av valget ```Require status checks to pass before merging``` og legge til de jobbene man krever at skal være gjennomført
 
