@@ -8,6 +8,6 @@ RUN mvn package -DskipTests
 # Stage 2: Kjør applikasjonen
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=build /app/target/*.jar application.jar
+COPY --from=build /app/target/onlinestore-0.0.1-SNAPSHOT.jar application.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","application.jar"]
