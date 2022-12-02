@@ -34,3 +34,9 @@ I dette tilfelle holder det å bruke ```main```
 For at man ikke skal kunne pushe kode direkete til main, kan man huke av valget som heter ```Require pull request reviews before merging```. Rett under dette valget kan man også bestemme hvor mange godkjenninger man trenger før pull requesten kan merges.
 For at kode kun skal kunne merges når Github actions har blitt kjørt, kan man huke av valget ```Require status checks to pass before merging``` og legge til de jobbene man krever at skal være gjennomført
 
+## Del 3 - Docker
+### Oppgave 1
+Feilen er at workflowen trenger brukernavn og passordtoken lagret som github secrets for å kunne pushe til dockerhub. For å generere en token må du gå til Account Settings -> Security -> New access token. Etter å ha lagt til disse secretsene kjører workflowen, og jeg kan se at imaget er lastet opp i Dockerhub
+
+### Oppgave 2
+```yaml
