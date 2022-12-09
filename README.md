@@ -14,8 +14,10 @@ on:
 ```
 
 ### Oppgave 2
-Her var feilen at kommandoen ```mvn compile``` ble brukt. Compile tar kun og kompilerer koden, og kjører ikke tester.
-Etter å ha byttet til ```mvn test``` fungerer det som det skal, og workflowen feiler fordi tester ikke er riktig. Etter å ha endret testen til å anta at antallet carts er 0 etter checkout, passerer testen
+
+Her var feilen at kommandoen ```mvn compile``` ble brukt. Compile tar kun og kompilerer koden, og kjører ikke tester
+Etter å ha byttet til ```mvn test``` fungerer det som det skal, og workflowen feiler fordi testen ikke er riktig. Etter å ha endret testen til å anta at antallet carts er 0 etter checkout, passerer testen.
+
 For å få workflowen til å kjøre på push til alle branches, kan vi bruke samme filter som i oppgave 1
 ```yaml
 on:
@@ -64,6 +66,7 @@ For at sensor skal kunne kjøre dette i sin fork, er hen først nødt til å gen
 For å gjøre det må man først finne brukeren sin i IAM interfacet i AWS. Deretter må man inn i "Security credentials" fanen og trykke "Create Access Key"
 Så må man sette inn nøklene man får inn i Github Secrets, under navnene AWS_ACCESS_KEY_ID og AWS_SECRET_ACCESS_KEY. AWS_ECR_REPO må også settes til navnet på repoet man vil pushe til
 Jeg satt opp slik at taggen til imaget blir hashen til commiten, og også at imaget blir tagget som latest
+
 
 ## Del 4 - Metrics, overvåkning og alarmer
 
@@ -115,3 +118,4 @@ For å bestemme om man skal kjøre plan eller apply har jeg brukt en if-setning 
 Det er også en tilsvarende for apply, som kun kjøres på push
 
 ### Oppgave 3
+
