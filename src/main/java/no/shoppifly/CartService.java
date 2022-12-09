@@ -1,5 +1,6 @@
 package no.shoppifly;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface CartService {
     String checkout(Cart cart);
 
     List<String> getAllsCarts();
+
+    void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent);
 }

@@ -14,7 +14,7 @@ on:
 ```
 
 ### Oppgave 2
-Her var feilen at kommandoen ```mvn compile``` ble brukt. Compile tar kun og kompilerer koden, og kjører ikke tester
+Her var feilen at kommandoen ```mvn compile``` ble brukt. Compile tar kun og kompilerer koden, og kjører ikke tester.
 Etter å ha byttet til ```mvn test``` fungerer det som det skal, og workflowen feiler fordi tester ikke er riktig. Etter å ha endret testen til å anta at antallet carts er 0 etter checkout, passerer testen
 For å få workflowen til å kjøre på push til alle branches, kan vi bruke samme filter som i oppgave 1
 ```yaml
@@ -64,3 +64,54 @@ For at sensor skal kunne kjøre dette i sin fork, er hen først nødt til å gen
 For å gjøre det må man først finne brukeren sin i IAM interfacet i AWS. Deretter må man inn i "Security credentials" fanen og trykke "Create Access Key"
 Så må man sette inn nøklene man får inn i Github Secrets, under navnene AWS_ACCESS_KEY_ID og AWS_SECRET_ACCESS_KEY. AWS_ECR_REPO må også settes til navnet på repoet man vil pushe til
 Jeg satt opp slik at taggen til imaget blir hashen til commiten, og også at imaget blir tagget som latest
+
+## Del 4 - Metrics, overvåkning og alarmer
+
+
+## Del 5 - Terraform og CloudWatch Dashboards
+### Oppgave 1
+Feilen som konsulentene i Gaffel har gjort er at de ikke lagrer/bruker statefilen som terraform oppretter. 
+
+Om man legger til denne kodesnutten i provider.tf filen, så vil terraform lagre/bruke en statefil som lagres i en S3 bucket(som jeg manuelt laget i AWS)
+```terraform
+terraform {
+  backend "s3" {
+    bucket = "1014-statefile"
+    key    = "shopifly.state"
+    region = "eu-west-1"
+  }
+}
+```
+
+Om man ikke definerer dette, så vil statefilen opprettes i VMet som GitHub actions spinner opp, og vil dermed bli slettet når VMet ikke trengs lenger.
+Neste gang Terraform kjøres, vet den ikke hva som har blitt gjort fra før, og vil dermed prøve å opprette alt på nytt. 
+Det er derfor Gaffel får feilmeldingen at bucketen finnes fra før.
+
+### Oppgave 2
+Jeg gjorde to endringer i workflow filen:
+
+Jeg definerte at jobben kun skal kjøres på push og pullrequest til main branchen. Jeg beholdt også den manuelle kjøringen
+```yaml
+on:
+  pull_request:
+    branches:
+     - 'main'
+  push:
+    branches:
+     - 'main'
+  workflow_dispatch:
+    branches:
+     - 'main'
+```
+
+For å bestemme om man skal kjøre plan eller apply har jeg brukt en if-setning som sjekker om det er en pull request eller ikke.
+```yaml
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan  -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=$CANDIDATE_EMAIL" -no-color
+        continue-on-error: false
+```
+Det er også en tilsvarende for apply, som kun kjøres på push
+
+### Oppgave 3
