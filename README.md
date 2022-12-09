@@ -97,14 +97,11 @@ Jeg definerte at jobben kun skal kjøres på push og pullrequest til main branch
 ```yaml
 on:
   pull_request:
-    branches:
-     - 'main'
+    branches: [ main ]
   push:
-    branches:
-     - 'main'
+    branches: [ main ]
   workflow_dispatch:
-    branches:
-     - 'main'
+    branches: [ main ]
 ```
 
 For å bestemme om man skal kjøre plan eller apply har jeg brukt en if-setning som sjekker om det er en pull request eller ikke.
