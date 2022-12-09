@@ -4,14 +4,11 @@ defaults:
     working-directory: infra
 on:
   pull_request:
-    branches:
-     - 'main'
+    branches: [ main ]
   push:
-    branches:
-     - 'main'
+    branches: [ main ]
   workflow_dispatch:
-    branches:
-     - 'main'
+    branches: [ main ]
 
 jobs:
   terraform:

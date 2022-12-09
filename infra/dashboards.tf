@@ -25,8 +25,8 @@ resource "aws_cloudwatch_dashboard" "main" {
     },
     {
       "type": "metric",
-      "x": 0,
-      "y": 6,
+      "x": 10,
+      "y": 0,
       "width": 10,
       "height": 6,
       "properties": {
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_dashboard" "main" {
     {
       "type": "metric",
       "x": 0,
-      "y": 12,
+      "y": 6,
       "width": 10,
       "height": 6,
       "properties": {
@@ -56,9 +56,28 @@ resource "aws_cloudwatch_dashboard" "main" {
           ]
         ],
         "period": 300,
-        "stat": "Maximum",
+        "stat": "Count",
         "region": "eu-west-1",
         "title": "Total number of checkouts"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 10,
+      "y": 6,
+      "width": 10,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "${var.candidate_id}",
+            "checkout-latency.value"
+          ]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "eu-west-1",
+        "title": "Checkout response time"
       }
     }
   ]
