@@ -15,6 +15,4 @@ public interface CartService {
     String checkout(Cart cart);
 
     List<String> getAllsCarts();
-
-    void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent);
 }
