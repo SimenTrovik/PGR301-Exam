@@ -1,6 +1,9 @@
 package no.shoppifly;
 
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +14,13 @@ public class ShoppingCartController {
     @Autowired
     private final CartService cartService;
 
-    public ShoppingCartController(CartService cartService) {
+    @Autowired
+    private final MeterRegistry meterRegistry;
+
+    public ShoppingCartController(CartService cartService, MeterRegistry meterRegistry) {
         this.cartService = cartService;
+        this.meterRegistry = meterRegistry;
+
     }
 
     @GetMapping(path = "/cart/{id}")
@@ -50,6 +58,7 @@ public class ShoppingCartController {
     public List<String> getAllCarts() {
         return cartService.getAllsCarts();
     }
+
 
 
 }
