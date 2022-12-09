@@ -1,6 +1,5 @@
 package no.shoppifly;
 
-import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,11 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReady
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
 
     private final MeterRegistry meterRegistry;
-    private final Counter counter;
+
 
     @Autowired
     public NaiveCartImpl(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
-        this.counter = Counter.builder("checkouts").register(meterRegistry);
     }
 
     @Override
@@ -41,8 +39,8 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReady
     @Override
     public String checkout(Cart cart) {
         shoppingCarts.remove(cart.getId());
-        counter.increment(1);
-        System.out.println("Checkout" );
+        meterRegistry.counter("checkouts").increment();
+        System.out.println("Checkout");
         return UUID.randomUUID().toString();
     }
 
