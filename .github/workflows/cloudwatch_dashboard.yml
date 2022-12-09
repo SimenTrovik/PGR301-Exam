@@ -4,7 +4,14 @@ defaults:
     working-directory: infra
 on:
   pull_request:
+    branches:
+     - 'main'
+  push:
+    branches:
+     - 'main'
   workflow_dispatch:
+    branches:
+     - 'main'
 
 jobs:
   terraform:
@@ -14,8 +21,8 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: eu-west-1
-      CANDIDATE_ID: jim
-      CANDIDATE_EMAIL: jim@gaffel.com
+      CANDIDATE_ID: 1014
+      CANDIDATE_EMAIL: simentrovik@gmail.com
     steps:
       - uses: actions/checkout@v3
       - name: Setup Terraform
@@ -27,8 +34,11 @@ jobs:
 
       - name: Terraform Plan
         id: plan
+        if: github.event_name == 'pull_request'
         run: terraform plan  -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=CANDIDATE_EMAIL" -no-color
         continue-on-error: false
 
       - name: Terraform Apply
+        id: apply
+        if: github.event_name == 'push'
         run: terraform apply -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=$CANDIDATE_EMAIL"  -auto-approve
