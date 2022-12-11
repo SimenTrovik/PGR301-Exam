@@ -90,6 +90,8 @@ Jeg satt opp slik at taggen til imaget blir hashen til commiten, og også at ima
 
 ## Del 4 - Metrics, overvåkning og alarmer
 
+Her lånte jeg en del kode fra øvingene, og endret de til å fungere for mitt usecase. Selve konfigureringen var omtrent ren copy/paste, og ApplicationEventListeneren brukte samme oppsett. Med noe endring fikk jeg det til å fungere slik jeg ønsket.
+Jeg løste Del 4 og 5 ganske samtidig, slik at jeg direkte kunne bruke dashboardene som TF oppretter.
 
 ## Del 5 - Terraform og CloudWatch Dashboards
 ### Oppgave 1
@@ -136,3 +138,6 @@ Det er også en tilsvarende for apply, som kun kjøres på push
 
 ### Oppgave 3
 
+Jeg tror jeg fikk alt til å fungere! Her måtte jeg lese mye dokumentasjon, siden en del av dette gikk utover det vi har gått igjennom i øvingene.
+
+Alarmen jeg satt opp fungerer, jeg får mail når den trigges
