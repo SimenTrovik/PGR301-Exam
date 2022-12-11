@@ -10,5 +10,4 @@ terraform {
     key    = "shopifly.state"
     region = "eu-west-1"
   }
-
 }
