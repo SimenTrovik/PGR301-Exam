@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_metric_alarm" "more_than_5_carts" {
+resource "aws_cloudwatch_metric_alarm" "more_than_5_carts_1014" {
   alarm_name                = "more_than_5_carts"
   namespace                 = "1014"
   metric_name               = "carts.value"
