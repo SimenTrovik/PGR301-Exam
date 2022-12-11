@@ -1,3 +1,13 @@
+## Del 1 - DevOps-prinsipper
+Det er ganske mange problemer med Shopiflys nåværende systemutviklingsprosess. 
+Ved å bare deploye en gang i kvartaler vil det være ganske vanskelig å hurtig patche sikkerhetshull som blir oppdaget. De vil heller ikke kunne gjøre små endringer når de ønsker.
+Om en deployment feiler, ruller de tilbake. Det vil si at tre måneders arbeid blir rullet tilbake, og det å feilsøke seg frem til hvilken feature som ødelegger bygget vil være et mareritt.
+Ved å gjøre hyppigere, små deployments vil gjøre det mye lettere å vite hvor problemet ligger om det skal feile.
+
+De bryter de fleste DevOps prinsippene, for  eksempel kontinuerlig forbedring. De får kun testet koden sin i produksjon hvert kvartal, og det tar da lang tid mellom hver iterasjon av features.
+De bryter Automasjon. Bygging, overlevering til Ops, og deployment til sky blir gjort manuelt, og legger på mye ekstra tidsbruk.
+
+
 
 
 ## Del 2 - CI
