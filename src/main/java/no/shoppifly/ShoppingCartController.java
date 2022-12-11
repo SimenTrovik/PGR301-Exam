@@ -35,7 +35,7 @@ public class ShoppingCartController {
      * @return an order ID
      */
     @PostMapping(path = "/cart/checkout")
-    @Timed(value = "checkout_latency")
+    @Timed(value = "checkout-latency")
     public String checkout(@RequestBody Cart cart) {
         return cartService.checkout(cart);
     }

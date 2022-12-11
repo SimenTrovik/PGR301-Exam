@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_dashboard" "main" {
   dashboard_name = var.candidate_id
-## Jim; seriously! we can use any word here.. How cool is that?
+  ## Jim; seriously! we can use any word here.. How cool is that?
   dashboard_body = <<DEATHSTAR
 {
   "widgets": [
@@ -68,16 +68,11 @@ resource "aws_cloudwatch_dashboard" "main" {
       "width": 10,
       "height": 6,
       "properties": {
-        "metrics": [
-          [
-            "${var.candidate_id}",
-            "checkout-latency.value"
-          ]
-        ],
-        "period": 300,
-        "stat": "Average",
-        "region": "eu-west-1",
-        "title": "Checkout response time"
+         "metrics": [[ "1014", "checkout-latency.avg", "exception", "none", "method", "checkout", "class", "no.shoppifly.ShoppingCartController" ]],
+         "period": 300,
+         "view": "timeSeries","stacked": false,
+         "region": "eu-west-1",
+         "title": "Checkout response time"
       }
     }
   ]
