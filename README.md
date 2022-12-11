@@ -1,5 +1,25 @@
+## Del 1 - DevOps-prinsipper
+### Hva er utfordringene med dagens systemutviklingsprosess?
+Det er ganske mange problemer med Shopiflys nåværende systemutviklingsprosess. 
+Ved å bare deploye en gang i kvartaler vil det være ganske vanskelig å hurtig patche sikkerhetshull som blir oppdaget. De vil heller ikke kunne gjøre små endringer når de ønsker.
+Om en deployment feiler, ruller de tilbake. Det vil si at tre måneders arbeid blir rullet tilbake, og det å feilsøke seg frem til hvilken feature som ødelegger bygget vil være et mareritt.
+Ved å gjøre hyppigere, små deployments vil gjøre det mye lettere å vite hvor problemet ligger om det skal feile.
 
+De bryter de fleste DevOps prinsippene, for  eksempel kontinuerlig forbedring. De får kun testet koden sin i produksjon hvert kvartal, og det tar da lang tid mellom hver iterasjon av features.
+De bryter Automasjon. Bygging, overlevering til Ops og deployment til sky blir gjort manuelt, og legger på mye ekstra tidsbruk.
 
+###  Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?
+Problemet med å gjøre en deployment hvert kvartal er at det tar lang tid å få ut ny funksjonalitet til kundene. Kontroll og QA er forsovet bra det, men når deploymentsene allerede er så sjeldne, vil dette også legge på enda mer overhead
+
+### Teamet overleverer kode til en annen avdelng som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?
+Det at de overleverer koden sin til Ops bryter jo med DevOps i seg selv, siden poenget er at et team skal både utvikle og drifte applikasjonen.
+
+Den største fordelen ved at teamet drifter sin egen applikasjon er at de kjenner til applikasjonen sin bedre enn noen andre og kjenner godt til hvordan den henger sammen. 
+Det vil gjøre det lettere for dem å feilsøke når noe går galt, og de vil kunne gjøre endringer raskere.
+
+### Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveranser.
+Om man har god teststrategi, og om man har en god CI/CD pipeline vil det være lettere å fange opp feil i koden før det blir satt i produksjon. Dette vil gjøre hyppige leveranser mye mindre smertefult
+Ved hyppige leveranser vil det også være lettere for andre å reviewe koden, siden størrelsen på endringen er mindre. Da vil det være lettere å kontinuerlig forbedre koden.
 ## Del 2 - CI
 ### Oppgave 1
 Jeg var litt usikker på ordvalget her, men tolket det som at workflowen skal kjøre på push til main, og på ALLE pull requester i repoet.
